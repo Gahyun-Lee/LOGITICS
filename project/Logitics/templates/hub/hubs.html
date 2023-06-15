@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Hubs Pages</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Table</li>
+                        </ol>
+                        <div class="mb-3">
+                            <button class="mb-2 btn btn-outline-secondary"onclick="onDisplay()">Add new Hub</button>
+                            <form action={% url 'hubs' %} method='POST' id="addHubDiv" style="display:none;">
+                                {% csrf_token %}
+                                <input type="text" name="name">
+                                <input type="text" name="dest">
+                                <input type="number" name="weight">
+                                <input type="submit" value="register">
+                            </form>
+                        </div>
+
+                        <div class="row">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Hubs Data Table
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Destination</th>
+                                            <th>Weight</th>
+                                            <th>More & QUEUE</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Destination</th>
+                                            <th>Weight</th>
+                                            <th>More & QUEUE</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for hub in hubs %}
+                                        <tr>
+                                            <td>{{hub.id}}</td>
+                                            <td>{{hub.name}}</td>
+                                            <td>{{hub.dest}}</td>
+                                            <td>{{hub.weight}}</td>
+                                            <td><a href="{{ hub.get_absolute_url}}" style="text-decoration:none; color:black;">{{hub.que}}</a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                
+            </div>
+        </div>
+        <script>
+            function onDisplay() {
+                console.log(document.getElementById("addHubDiv").style.display)
+                if(document.getElementById("addHubDiv").style.display == "none") {
+                    document.getElementById("addHubDiv").style.display = "block"
+                } else {
+                    document.getElementById("addHubDiv").style.display = "none"
+                }
+            }
+        </script>
+
+{% endblock content%}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">{{hub.name}} -> {{hub.dest}}</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Hub-Hub Queue</li>
+                        </ol>
+
+                        <div class="row">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Hubs Data Table
+                            </div>
+                            <div class="card-body">
+                                <table class="table mb-7">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Destination</th>
+                                        <th scope="col">Weight</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td scope="row">{{hub.id}}</td>
+                                        <td>{{hub.name}}</td>
+                                        <td>{{hub.dest}}</td>
+                                        <td>{{hub.weight}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <h4 class="mb-3">Edit</h4>
+                                    <form action="" method='POST'>
+                                        {% csrf_token %}
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Destination</th>
+                                                <th scope="col">Weight</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td scope="row">{{hub.id}}</td>
+                                                <td>{{hub.name}}</td>
+                                                <td>{{hub.dest}}</td>
+                                                <td><input type="number" name="weight" value="{{hub.weight}}"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <input type="submit" value="Edit">
+                                    </form>
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">ID</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            {% for q in que%}
+                                            <td>{{q}}</td>
+                                            {% endfor %}
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <a href="delete/">Delete</a>
+                        </div>
+                    </div>
+                </main>
+                
+            </div>
+        </div>
+
+{% endblock content%}

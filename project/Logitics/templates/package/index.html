@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Main Pages</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Table</li>
+                        </ol>
+                        <div class="row">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Packages Data Table
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Number</th>
+                                            <th>Name</th>
+                                            <th>destination</th>
+                                            <th>Route</th>
+                                            <th>Queue</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Number</th>
+                                            <th>Name</th>
+                                            <th>destination</th>
+                                            <th>Route</th>
+                                            <th>Queue</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for package in packages%}
+                                        <tr>
+                                            <td>{{package.id}}</td>
+                                            <td>{{package.name}}</td>
+                                            <td>{{package.dest}}</td>
+                                            <td>{{package.root}}</td>
+                                            {% for q in queue %}
+                                                {% if q.0 == package.id%}
+                                                    <td>{{q.1}}->{{q.2}}</td> 
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                
+            </div>
+        </div>
+{% endblock content%}
