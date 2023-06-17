@@ -24,9 +24,11 @@ def index(request):
             print(hub.que)
             if hub.que == None:
                 queue.append(['',''])
-                break
+                continue
             que = hub.que.split('-')
             for q in que:
+                if q == '':
+                    continue
                 if package.id == int(q):
                     queue.append([package.id, hub.name, hub.dest])
     
